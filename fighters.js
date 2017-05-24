@@ -82,7 +82,7 @@ function fight(firstPlayer, secondPlayer, ...points){
 
 //Для тестів за допомогою mocha зручно відключити вивід до console.log 
 //меседжів нашої функції fight, але треба залищити консоль доступною для mocha
-//Тому виводимо меседжі тільки в тому випадку, якщо скрипт виконується у браузері
+//Тому виводимо меседжі тільки якщо скрипт виконується у браузері
 function printMessage(message){
   if(typeof window !== "undefined"){
     console.log(message);
