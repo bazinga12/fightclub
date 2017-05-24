@@ -39,14 +39,14 @@ describe('Unfinished games', () => {
 
 describe('Error checking', () => {
 	it('should throw an error if the first two arguments are not Fighters', () => {
-	  let first = new Fighter();
-	  let bindedFight = fight.bind(null, first, 10);
-	  expect(bindedFight).to.throw(Error, 'First two arguments should be fighters');
+	    let first = new Fighter();
+	    let bindedFight = fight.bind(null, first, 10);
+	    expect(bindedFight).to.throw(Error, 'First two arguments should be fighters');
 	});
 	it('should throw an error if at least one of @points arguments is not a Number', () => {
 		let first = new Fighter();
 		let second = new Fighter();
 		let bindedFight = fight.bind(null, first, second, 'string');
-	    expect(bindedFight).to.throw(Error, `is not a Number`);
+		expect(bindedFight).to.throw(Error, `is not a Number`);
 	});
 })
