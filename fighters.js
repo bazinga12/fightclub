@@ -29,11 +29,18 @@ class ImprovedFighter extends Fighter{
   }
 }
 
-//Функцією пишемо з урахуванням того, що ми не знаємо, які саме типи у переданих
-//файтерів
-let fight = (firstPlayer=new Fighter(),
-             secondPlayer=new ImprovedFighter(),
-             ...points) => {
+  //Функцією пишемо з урахуванням того, що ми не знаємо, які саме типи у переданих
+  //файтерів
+function fight(firstPlayer, secondPlayer, ...points){
+
+  if(!(firstPlayer instanceof Fighter) || !(secondPlayer instanceof Fighter)){
+    throw new Error('First two arguments should be fighters');
+  } 
+  points.forEach( (el, i) => {
+    if(typeof el !== 'number'){
+      throw new Error(`Your argument#${i+3} is not a Number`);
+    }
+  });
 
   let isPlayerDead = (player) => {
     return player.getHealth() <= 0;
@@ -43,9 +50,9 @@ let fight = (firstPlayer=new Fighter(),
     printMessage(`And the Oscar goes to... ${player.getName()}`);
   };
   
-  //За умовою задачі треба було у класі-нащадку створити новий метод doubleHit, 
-  //а не перевизначити метод hit , що дало би можливість поліморфної роботи з класами.
-  //Тому створимо функцію, що емулює поліморфізм.
+    //За умовою задачі треба було у класі-нащадку створити новий метод doubleHit, 
+    //а не перевизначити метод hit , що дало би можливість поліморфної роботи з класами.
+    //Тому створимо функцію, що емулює поліморфізм.
   let hit = (player) => {
     if(player instanceof ImprovedFighter){
       return player.doubleHit.bind(player);
