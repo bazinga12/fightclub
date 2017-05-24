@@ -1,9 +1,12 @@
-var assert = require('assert');
+let assert = require('assert');
+let chai = require('chai');
+
 let task = require('./fighters');
+
+let expect = chai.expect;
 let Fighter = task.Fighter;
 let ImprovedFighter = task.ImprovedFighter;
 let fight = task.fight;
-
 
 let points = [10,10,10,10,10];
 
@@ -32,4 +35,18 @@ describe('Unfinished games', () => {
 		assert.ok(true, first.getHealth() > 0);
 		assert.ok(true, second.getHealth() > 0);
 	})
+});
+
+describe('Error checking', () => {
+	it('should throw an error if the first two arguments are not Fighters', () => {
+	  let first = new Fighter();
+	  let bindedFight = fight.bind(null, first, 10);
+	  expect(bindedFight).to.throw(Error, 'First two arguments should be fighters');
+	});
+	it('should throw an error if the at least one of @points arguments is not a Number', () => {
+		let first = new Fighter();
+		let second = new Fighter();
+		let bindedFight = fight.bind(null, first, second, 'string');
+	    expect(bindedFight).to.throw(Error, `is not a Number`);
+	});
 })
