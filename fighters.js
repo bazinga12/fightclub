@@ -50,7 +50,7 @@ function fight(firstPlayer, secondPlayer, ...points){
     printMessage(`And the Oscar goes to... ${player.getName()}`);
   };
   
-    //За умовою задачі треба було у класі-нащадку створити новий метод doubleHit, 
+    //За умовою задачі треба у класі-нащадку створити новий метод doubleHit, 
     //а не перевизначити метод hit , що дало би можливість поліморфної роботи з класами.
     //Тому створимо функцію, що емулює поліморфізм.
   let hit = (player) => {
